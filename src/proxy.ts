@@ -68,7 +68,7 @@ export async function startProxy(opts: StartProxyOptions): Promise<ProxyHandle> 
   const origError = console.error
   console.error = (...args: unknown[]) => {
     const msg = args.map(String).join(" ")
-    if (msg.startsWith("[PROXY]")) {
+    if (msg.startsWith("[PROXY]") || msg.startsWith("[token_refresh] scheduled refresh (immediate)")) {
       void log?.(classifyProxyLog(msg as string), msg)
       return
     }
